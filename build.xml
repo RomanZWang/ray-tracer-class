@@ -1,0 +1,70 @@
+<project name='pa3' basedir="." default="jar.pa3">
+    <property name="author" value="Roman Wang" />
+
+    <property name="build.dir" value="${basedir}/build" />
+    <property name="build.classdir" value="${build.dir}/classes" />
+    <property name="build.distdir" value="${buildd.ir}/dist" />
+
+    <property name="src.dir" location="${basedir}/src" />
+    <property name="doc.dir" location="${basedir}/doc"/>
+    <property name="pa3.jar" value="${basedir}/pa3.jar"/>
+
+    <!-- EXECUTION TAGS -->
+    <property name="parallel" value="true" />
+    <property name="debug" value="false" />
+    <property name="verbose" value="off" />
+    <property name="args" value="scene/cbox.xml"/>
+
+    <!-- ========================================================================= -->
+    <!--                                    Init                                   -->
+    <!-- ========================================================================= -->
+    <target name="init" description="Initialize ressources">
+       <mkdir dir="${build.classdir}"/>
+    </target>
+
+    <!-- ========================================================================= -->
+    <!--                               Build Scheduler                             -->
+    <!-- ========================================================================= -->
+    <target name="build.pa3" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.classdir}" debug="${debug}"
+            optimize="on" verbose="${verbose}" includeantruntime="false">
+        </javac>
+    </target>
+
+    <target name="jar.pa3" depends="build.pa3">
+        <jar jarfile="${pa3.jar}" index="true">
+            <fileset dir="${build.classdir}"
+                includes="**/META-INF/**,**/**"/>
+        </jar>
+    </target>
+
+    <!-- Generate javadocs for current project into ${doc.dir} -->
+    <target name="doc" depends="init" description="generate documentation">
+        <javadoc sourcepath="${src.dir}" destdir="${doc.dir}">
+            <classpath>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+        </javadoc>
+    </target>
+
+    <target name="run-parallel" depends="build.pa3" if="${parallel}" >
+        <java classname="ray.ParaRayTracer" fork="true">
+            <classpath>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+            <arg value="${args}"/>
+        </java>
+    </target>
+
+    <target name="run-sequential" depends="build.pa3" unless="${parallel}" >
+        <java classname="ray.RayTracer" fork="true">
+            <classpath>
+                <pathelement path="${build.classdir}"/>
+            </classpath>
+            <arg value="${args}"/>
+        </java>
+    </target>
+
+    <target name="run" depends="run-sequential, run-parallel">
+    </target>
+</project>

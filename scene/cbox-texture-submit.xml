@@ -1,0 +1,110 @@
+<scene>
+
+  <image>
+    300 300
+  </image>
+
+  <sampler type="JitteredSampler">
+    <numSamplesU>32</numSamplesU>
+    <numSamplesV>32</numSamplesV>
+  </sampler>
+
+
+  <renderer type="BruteForcePathTracer">
+    <backgroundIllumination>1</backgroundIllumination>
+  </renderer>
+
+  <camera>
+    <eye>50 0 1000</eye>
+    <target>600 0 -1</target>
+    <up>0 1 0</up>
+    <yFOV>115</yFOV>
+  </camera>
+
+  <material name="white" type="Homogeneous">
+    <brdf type="Lambertian">
+      <reflectance>0.75 0.75 0.75</reflectance>
+    </brdf>
+  </material>
+  <material name="red" type="Homogeneous">
+    <brdf type="Lambertian">
+      <reflectance>0.6 0.05 0.05</reflectance>
+    </brdf>
+  </material>
+  <material name="green" type="Homogeneous">
+    <brdf type="Lambertian">
+      <reflectance>0.1 0.45 0.15</reflectance>
+    </brdf>
+  </material>
+  <material name="p1" type="TextureMaterial">
+    <data>scene/textures/originals/moonb.png</data>
+  </material>
+  <material name="p2" type="TextureMaterial">
+    <data>scene/textures/originals/marsb.png</data>
+  </material>
+  <material name="p3" type="TextureMaterial">
+    <data>scene/textures/originals/earthmab.png</data>
+  </material>
+  <material name="p4" type="TextureMaterial">
+    <data>scene/textures/originals/jupeqb.png</data>
+  </material>
+  <material name="p5" type="TextureMaterial">
+    <data>scene/textures/originals/earthmab.png</data>
+  </material>
+  <material name="p6" type="TextureMaterial">
+    <data>scene/textures/originals/white-stone.png</data>
+  </material>
+  <material name="p7" type="TextureMaterial">
+    <data>scene/textures/originals/rsz_housestone.png</data>
+  </material>
+
+  <material name="light" type="LambertianEmitter">
+    <brdf type="Lambertian">
+      <reflectance>0.58 0.58 0.58</reflectance>
+    </brdf>
+    <radiance>1000 1000 1000</radiance>
+  </material>
+  <material name="light2" type="LambertianEmitter">
+    <brdf type="Lambertian">
+      <reflectance>0.58 0.58 0.58</reflectance>
+    </brdf>
+    <radiance>40 40 40</radiance>
+  </material>
+
+
+  <surface type="Sphere">
+    <material ref="light" />
+    <radius>300</radius>
+    <center>0 0 0</center>
+  </surface>
+
+  <surface type="Sphere">
+    <material ref="light2" />
+    <radius>300</radius>
+    <center>200 0 4000</center>
+  </surface>
+
+  <surface type="Mesh">
+    <material ref="p1" />
+    <data>msh/planet1.msh</data>
+  </surface>
+
+  <surface type="Mesh">
+    <material ref="p2" />
+    <data>msh/planet2.msh</data>
+  </surface>
+
+  <surface type="Mesh">
+    <material ref="p3" />
+    <data>msh/planet3.msh</data>
+  </surface>
+  <surface type="Mesh">
+    <material ref="p4" />
+    <data>msh/planet4.msh</data>
+  </surface>
+
+  <background type="Uniform">
+    <radiance>0.7 0.7 0.7</radiance>
+  </background>
+
+</scene>
