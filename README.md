@@ -7,7 +7,7 @@ This feature creates a more realistic image by giving less weight to light rays 
 
 ![Cosine Similarity Weighted Hemisphere Sampling Technical Figure](/cwhs.jpg)
 
-![Cosine Similarity Weighted Hemisphere Sampling Figure](/hemi-sampling.jpg)
+![Cosine Similarity Weighted Hemisphere Sampling Figure](/hemi-sampling.png)
 
 #### Instructions
 ```ant run -Dargs=scene/cbox-global.xml```
