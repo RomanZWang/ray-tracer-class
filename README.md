@@ -5,7 +5,10 @@ This is my implementation of a ray tracer for graphics class. I had implemented 
 ### Cosine Similarity Weighted Hemisphere Sampling
 This feature creates a more realistic image by giving less weight to light rays hitting our objects at high angles of incidence. This is done without ray-tracing.
 
-![Cosine Similarity Weighted Hemisphere Sampling Figure](/cwhs.jpg)
+![Cosine Similarity Weighted Hemisphere Sampling Technical Figure](/cwhs.jpg)
+
+![Cosine Similarity Weighted Hemisphere Sampling Figure](/hemi-sampling.jpg)
+
 #### Instructions
 ```ant run -Dargs=scene/cbox-global.xml```
 
